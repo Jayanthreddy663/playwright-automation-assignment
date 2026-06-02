@@ -8,9 +8,9 @@ test.describe('Cart Tests', () => {
   test('add items to cart and verify badge count', async ({ loggedInPage }) => {
     const inventory = new InventoryPage(loggedInPage);
 
-    await inventory.addProduct(0);
-    await inventory.addProduct(1);
-    await inventory.addProduct(2);
+    await inventory.addToCart(0);
+    await inventory.addToCart(1);
+    await inventory.addToCart(2);
 
     await expect(inventory.cartBadge).toHaveText('3');
   });
@@ -26,9 +26,9 @@ test.describe('Cart Tests', () => {
       throw new Error('Expected at least 3 products in inventory');
     }
 
-    await inventory.addProduct(0);
-    await inventory.addProduct(1);
-    await inventory.addProduct(2);
+    await inventory.addToCart(0);
+    await inventory.addToCart(1);
+    await inventory.addToCart(2);
 
     await inventory.openCart();
 

@@ -10,7 +10,7 @@ test.describe('Checkout Tests', () => {
   test('successful checkout', async ({ loggedInPage }) => {
     const inventory = new InventoryPage(loggedInPage);
 
-    await inventory.addProduct(0);
+    await inventory.addToCart(0);
 
     await inventory.openCart();
 
@@ -37,7 +37,7 @@ test.describe('Checkout Tests', () => {
   test('show error when postal code is missing', async ({ loggedInPage }) => {
     const inventory = new InventoryPage(loggedInPage);
 
-    await inventory.addProduct(0);
+    await inventory.addToCart(0);
 
     await inventory.openCart();
 

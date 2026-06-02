@@ -32,7 +32,7 @@ export class InventoryPage {
     await this.sortDropdown.selectOption(option);
   }
 
-  async addProduct(index: number) {
+  async addToCart(index: number) {
     await this.addToCartButtons.nth(index).click();
   }
 

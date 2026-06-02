@@ -10,7 +10,7 @@ test.describe('Logout Tests', () => {
     await inventory.logout();
 
     await expect(loggedInPage)
-      .toHaveURL(new URL('/', process.env.BASE_URL).toString());
+      .toHaveURL('/');
   });
 
 });
