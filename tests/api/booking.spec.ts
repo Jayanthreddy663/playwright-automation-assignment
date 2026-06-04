@@ -35,6 +35,17 @@ test.describe('Booking CRUD', () => {
 
     expect(booking).toMatchObject(payload);
     BookingSchema.parse(booking);
+
+    const listResponse = await bookingClient.getBookings();
+
+    expect(listResponse.status()).toBe(200);
+
+    const bookingList = await listResponse.json();
+    const hasCreatedBooking = bookingList.some(
+      (item: { bookingid: number }) => item.bookingid === bookingId
+    );
+
+    expect(hasCreatedBooking).toBe(true);
   });
 
   test('should update booking', async ({ request }) => {
@@ -57,7 +68,7 @@ test.describe('Booking CRUD', () => {
 
     const updatedBooking = await updateResponse.json();
 
-    expect(updatedBooking.firstname).toBe('Alex');
+    expect(updatedBooking.firstname).toBe(bookingPayloads.updated().firstname);
     BookingSchema.parse(updatedBooking);
   });
 
@@ -81,7 +92,7 @@ test.describe('Booking CRUD', () => {
 
     const patchedBooking = await patchResponse.json();
 
-    expect(patchedBooking.firstname).toBe('Patched');
+    expect(patchedBooking.firstname).toBe(bookingPayloads.patch().firstname);
     BookingSchema.parse(patchedBooking);
   });
 
